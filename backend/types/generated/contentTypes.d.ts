@@ -377,6 +377,12 @@ export interface ApiArtisanArtisan extends Schema.CollectionType {
     name: Attribute.String;
     description: Attribute.RichText;
     picture: Attribute.Media;
+    slug: Attribute.UID<'api::artisan.artisan', 'name'>;
+    products: Attribute.Relation<
+      'api::artisan.artisan',
+      'oneToMany',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -388,6 +394,44 @@ export interface ApiArtisanArtisan extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::artisan.artisan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'product';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.RichText;
+    price: Attribute.Float;
+    artisan: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::artisan.artisan'
+    >;
+    picture: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
       'oneToOne',
       'admin::user'
     > &
@@ -812,6 +856,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::artisan.artisan': ApiArtisanArtisan;
+      'api::product.product': ApiProductProduct;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

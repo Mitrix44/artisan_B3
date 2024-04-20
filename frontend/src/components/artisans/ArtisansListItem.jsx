@@ -1,12 +1,19 @@
-import PropTypes from 'prop-types';
+import { Card, CardBody, CardHeader } from '@nextui-org/react'
+import PropTypes from 'prop-types'
 
 export default function ArtisansListItem({ artisan }) {
-  const { name, description, picture } = artisan.attributes
+  const { name, description, picture, slug } = artisan.attributes
   return (
-    <div className="card">
-      <img className="profilePicture" src={"http://localhost:1337" + picture?.data?.attributes?.formats?.thumbnail?.url} />
-      <h3>{name}</h3>
-      <p>{description}</p>
+    <div className='w-1/4 p-5'>
+      <Card pressable href={`/artisans/${slug}`}>
+        <CardHeader>
+          <img className='w-full' src={'http://localhost:1337' + picture?.data?.attributes?.formats?.thumbnail?.url} />
+        </CardHeader>
+        <CardBody>
+          <h3>{name}</h3>
+          <p>{description}</p>
+        </CardBody>
+      </Card>
     </div>
   )
 }
