@@ -1,6 +1,8 @@
 import { Navbar, NavbarContent, NavbarItem, Link, Button } from '@nextui-org/react'
 import './Header.css'
+import { useAuth } from '../../context/authContext'
 export default function Header() {
+  const { state: { user, jwt, error, loading }, login } = useAuth()
   return (
     // <header className='header'>
     //   <nav>
@@ -43,9 +45,17 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify='end'>
         <NavbarItem>
-          <Button as={Link} color='primary' href='/authentication' variant='flat'>
-            connexion
+        { user && jwt ?
+        <>
+          <Button as={Link} color='primary' href='/profile' variant='flat'>
+            Profil
           </Button>
+           <Button className='ml-3' as={Link} color='primary' href='/authentication' variant='flat'>
+           Dashboard
+         </Button> 
+         </> : <Button as={Link} color='primary' href='/authentication' variant='flat'>
+            connexion
+          </Button>}
           <Button className='ml-3' as={Link} color='primary' href='/cart' variant='flat'>
             Pannier
           </Button>
