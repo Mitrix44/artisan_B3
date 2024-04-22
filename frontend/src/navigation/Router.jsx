@@ -10,7 +10,8 @@ import PrivateRoutes from './PrivateRouteMiddleware'
 import Dashboard from '../pages/protected/Dashboard'
 import Cart from '../pages/protected/Cart'
 import Profile from '../pages/protected/profile'
-export default function Router() {
+import UpdateProduct from '../pages/protected/UpdateProduct'
+export default function Router () {
   return (
     <BrowserRouter>
       <Routes>
@@ -26,6 +27,7 @@ export default function Router() {
         <Route path='authentication' element={<Auth />} />
         <Route path='dashboard' element={<PrivateRoutes />}>
           <Route index element={<Dashboard />} />
+          <Route path=':idProduct' element={<UpdateProduct />} />
         </Route>
         <Route path='cart' element={<PrivateRoutes />}>
           <Route index element={<Cart />} />

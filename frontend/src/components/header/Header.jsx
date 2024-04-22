@@ -1,19 +1,19 @@
 import { Navbar, NavbarContent, NavbarItem, Link, Button } from '@nextui-org/react'
 import './Header.css'
 import { useAuth } from '../../context/authContext'
-export default function Header() {
-  const { state: { user, jwt, error, loading }, login } = useAuth()
+export default function Header () {
+  const { state: { user, jwt } } = useAuth()
   return (
-    // <header className='header'>
-    //   <nav>
-    //     <a href='/'>Accueil</a>
-    //     <a href='/artisans'>Artisans</a>
-    //     <a href='/about'>A propos</a>
-    //     <a href='/services'>Services</a>
-    //     <a href='/contact'>Contact</a>
-    //   </nav>
-    //   <a href='/authentication'><Button>Connexion</Button> </a>
-    // </header>
+  // <header className='header'>
+  //   <nav>
+  //     <a href='/'>Accueil</a>
+  //     <a href='/artisans'>Artisans</a>
+  //     <a href='/about'>A propos</a>
+  //     <a href='/services'>Services</a>
+  //     <a href='/contact'>Contact</a>
+  //   </nav>
+  //   <a href='/authentication'><Button>Connexion</Button> </a>
+  // </header>
 
     <Navbar shouldHideOnScroll>
       <NavbarContent className='hidden sm:flex gap-4' justify='center'>
@@ -45,17 +45,18 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify='end'>
         <NavbarItem>
-        { user && jwt ?
-        <>
-          <Button as={Link} color='primary' href='/profile' variant='flat'>
-            Profil
-          </Button>
-           <Button className='ml-3' as={Link} color='primary' href='/authentication' variant='flat'>
-           Dashboard
-         </Button> 
-         </> : <Button as={Link} color='primary' href='/authentication' variant='flat'>
-            connexion
-          </Button>}
+          {user && jwt
+            ? <>
+              <Button as={Link} color='primary' href='/profile' variant='flat'>
+                Profil
+              </Button>
+              <Button className='ml-3' as={Link} color='primary' href='/authentication' variant='flat'>
+                Dashboard
+              </Button>
+            </>
+            : <Button as={Link} color='primary' href='/authentication' variant='flat'>
+              connexion
+              </Button>}
           <Button className='ml-3' as={Link} color='primary' href='/cart' variant='flat'>
             Pannier
           </Button>

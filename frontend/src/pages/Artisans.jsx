@@ -2,7 +2,7 @@ import ArtisansList from '../components/artisans/ArtisansList'
 import PropTypes from 'prop-types'
 import { useFetch } from '../hooks/Api'
 
-export default function Artisans() {
+export default function Artisans () {
   // const [artisans, setArtisans] = useState([])
   // useEffect(() => {
   //   const getData = async () => {

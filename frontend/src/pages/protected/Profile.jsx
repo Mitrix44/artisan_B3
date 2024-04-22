@@ -1,9 +1,9 @@
-import UpdateProfile from "../../components/forms/UpdateProfile";
+import UpdateProfile from '../../components/forms/UpdateProfile'
 
-export default function Profile() {
+export default function Profile () {
   return (
     <>
-      <h1 className='my-7'>Mon profile</h1>
+      <h1 className='my-7'>Modifier mon profil</h1>
       <UpdateProfile />
     </>
   )

@@ -3,7 +3,7 @@ import { useFetch } from '../hooks/Api'
 import ArtisanHeader from '../components/artisan/ArtisanHeader'
 import ProductsList from '../components/products/ProductsList'
 
-export default function Artisan() {
+export default function Artisan () {
   const { artisanSlug } = useParams()
 
   const { response, error, isLoading } = useFetch(`${process.env.REACT_APP_API_URL}artisans?filters[slug][$eq]=${artisanSlug}&populate=*`)

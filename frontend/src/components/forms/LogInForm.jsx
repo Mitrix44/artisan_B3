@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/authContext'
 import { Button, Input } from '@nextui-org/react'
 
-export default function LogInForm() {
+export default function LogInForm () {
   const [formData, setFormData] = useState({
-    identifier: 'bruce@wayne.com',
-    password: 'batman'
+    identifier: 'test@free.fr',
+    password: 'Test1998'
   })
 
   const { state: { user, jwt, error, loading }, login } = useAuth()

@@ -1,11 +1,11 @@
 import { Button } from '@nextui-org/react'
 import PropTypes from 'prop-types'
 import { addToCart } from '../../services/cartUtils'
-export default function ProductsListItem({ product }) {
+export default function ProductsListItem ({ product }) {
   return (
     <div className='product-card'>
       <div className='intern-product-card'>
-        <img className='product-img' src={'http://localhost:1337' + product?.attributes?.picture?.data[0]?.attributes?.formats?.thumbnail?.url} />
+        {product.attributes.picture.data && (<img className='product-img' src={'http://localhost:1337' + product?.attributes?.picture?.data[0]?.attributes?.formats?.thumbnail?.url} />)}
         <h3>{product.attributes.name}</h3>
         <span>{product.attributes.price} €</span>
         {product.attributes.artisan.data.attributes.picture && (

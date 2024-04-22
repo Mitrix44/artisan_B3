@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import ArtisansListItem from './ArtisansListItem'
-export default function ArtisansList({ artisans }) {
+export default function ArtisansList ({ artisans }) {
   if (!artisans || artisans.length < 1) {
     return 'No data'
   }

@@ -2,7 +2,7 @@ import ProductsListItem from './ProductsListItem'
 import PropTypes from 'prop-types'
 import './products.css'
 
-export default function ProductsList({ products }) {
+export default function ProductsList ({ products }) {
   return (
     <>
       <h1>liste des produits</h1>
