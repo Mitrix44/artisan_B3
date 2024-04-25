@@ -1,10 +1,27 @@
 import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react'
 import { useFetch } from '../../hooks/Api'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useAuth } from '../../context/authContext'
+import { toast } from 'react-toastify'
 
-export default function ProductList ({ artisanId }) {
+export default function ProductList({ artisanId }) {
   const { response: products, error: productsError, isLoading: productsIsLoading } = useFetch(`${process.env.REACT_APP_API_URL}products?filters[artisan][id][$eq]=${artisanId}&populate=*`)
+  const { state: { jwt } } = useAuth()
   const navigate = useNavigate()
+  const handleDelete = async (id, event) => {
+    const response = await axios.delete(`${process.env.REACT_APP_API_URL}products/${id}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    })
+    if (response.status === 200) {
+      toast.success('Produit correctement supprimé')
+      event.target.parentNode.parentNode.remove()
+    }
+  }
   if (productsIsLoading) { return (<h2>Chargement ...</h2>) }
   if (productsError) { return (<pre>{JSON.stringify(productsError, null, 2)}</pre>) }
   if (products) {
@@ -29,7 +46,9 @@ export default function ProductList ({ artisanId }) {
                 <Button className='mr-3' color='primary' onClick={() => { navigate(`/dashboard/${product.id}`) }} variant='flat'>
                   Mettre a jour
                 </Button>
-                <Button color='danger' />
+                <Button color='danger' onPress={(event) => { handleDelete(product.id, event) }}>
+                  Supprimer
+                </Button>
               </TableCell>
             </TableRow>
           ))}

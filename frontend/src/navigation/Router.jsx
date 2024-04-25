@@ -11,7 +11,8 @@ import Dashboard from '../pages/protected/Dashboard'
 import Cart from '../pages/protected/Cart'
 import Profile from '../pages/protected/profile'
 import UpdateProduct from '../pages/protected/UpdateProduct'
-export default function Router () {
+import NewProduct from '../pages/protected/newProduct'
+export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
@@ -28,6 +29,7 @@ export default function Router () {
         <Route path='dashboard' element={<PrivateRoutes />}>
           <Route index element={<Dashboard />} />
           <Route path=':idProduct' element={<UpdateProduct />} />
+          <Route path='new-product' element={<NewProduct />} />
         </Route>
         <Route path='cart' element={<PrivateRoutes />}>
           <Route index element={<Cart />} />
